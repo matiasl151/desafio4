@@ -11,7 +11,7 @@ class ContenedorArchivo {
 
         try {
             let archivo = await this.getAll();
-            archivo.push(producto);
+            archivo.push(producto)
             await fs.writeFile(this.path, JSON.stringify(archivo, null, 4));
         } catch (error) {
             console.log('No se pudo guardar, error:', error.message);
@@ -22,8 +22,9 @@ class ContenedorArchivo {
 
         try {
             let archivo = await fs.readFile(this.path, 'utf-8');
-            let archivo_json = JSON.parse(archivo);
-            return archivo_json.filter(producto => producto.id === id);
+            let archivo_json = JSON.parse(archivo);        
+            return archivo_json.find(p => p.id == id);
+            
         } catch (error) {
             console.log("No se encontro el producto, error: ", error.message);
             return null;
