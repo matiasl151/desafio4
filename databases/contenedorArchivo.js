@@ -66,8 +66,35 @@ class ContenedorArchivo {
         }
     }
 
+    async updateProducto(id_producto, {title, price, thumbnail} = datos){
+
+        let producto = await this.getById(id_producto);
+        
+        const productoUpdate = {
+            title: producto.title,
+            price: producto.price,
+            thumbnail: producto.thumbnail,
+            id: id_producto
+        }
+
+        if (title) {
+            productoUpdate.title = title;
+        } 
+        if (price) {
+            productoUpdate.price = price;
+        } 
+        if (thumbnail) {
+            productoUpdate.thumbnail = thumbnail;
+        }
+
+        await this.deleteById(id_producto);
+        await this.save(productoUpdate);
+        return productoUpdate;
+    }
+
 }
 
-
+// let contenedor = new ContenedorArchivo('./productos.txt')
+// contenedor.updateProducto(1652102912326, {title: "holasa", price: 12345, thumbnail: "tuki.jpg"})
 
 module.exports = ContenedorArchivo;

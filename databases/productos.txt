@@ -6,8 +6,8 @@
         "id": 1652102863883
     },
     {
-        "title": "TV LG 85",
-        "price": 3600,
+        "title": "TV Samsung 85",
+        "price": 4000,
         "thumbnail": "televisor.jpg",
         "id": "1652102912326"
     }

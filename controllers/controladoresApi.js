@@ -31,23 +31,11 @@ const controladoresApi = {
     },
     updateProducto : async (req, res) => {
         const idProducto = req.params.idProducto
-        try{
-            const producto = await contenedor.getById(idProducto)
-            if (producto == undefined){
-                res.status(404).json({error: 'producto no encontrado'})
-            }
-            if (!req.body.title || !req.body.price || !req.body.thumbnail){
-                res.status(400).json({ error: "Falta un atributo"})
-                return;
-            }
-            await contenedor.deleteById(idProducto)
-            req.body.id = idProducto
-            
-            const productoActualizado = await contenedor.save(req.body)
-            res.status(200).json(productoActualizado)
-
+        try {
+            const productoActualizado = await contenedor.updateProducto(idProducto, req.body);
+            res.status(200).json(productoActualizado);
         } catch (error) {
-            res.status(500).json({ error: error.message })
+            res.status(400).json({ error: error.message});
         }
     },
     deleteProducto : async (req, res) => {
