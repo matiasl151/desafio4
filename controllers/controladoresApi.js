@@ -1,7 +1,12 @@
 const ContenedorArchivo = require('../databases/contenedorArchivo.js')
 const contenedor = new ContenedorArchivo('./databases/productos.txt')
 
-
+// TODO comparar estructura de body del request con la estructura de los productos
+// const estructura = {
+//     "title": "",
+//     "price": "",
+//     "thumbnail": ""
+// }
 
 const controladoresApi = {
 
@@ -25,19 +30,20 @@ const controladoresApi = {
     },
     postProducto : async (req, res) => {
         // TODO agregar validacion si ya existe producto con ese id
-        let idProducto = Date.now()
-        req.body.id = idProducto
+        req.body.id = Date.now()
         const productoAgregado = await contenedor.save(req.body)
         res.status(201).json(productoAgregado)
     },
     updateProducto : async (req, res) => {
-        // No funca todavia
+        // Esta medio agarrado de los pelos
         const idProducto = req.params.idProducto
         try{
             const producto = await contenedor.getById(idProducto)
             if (producto == undefined){
                 res.status(404).json({error: 'producto no encontrado'})
             }
+            await contenedor.deleteById(idProducto)
+            req.body.id = idProducto
             const productoActualizado = await contenedor.save(req.body)
             res.status(200).json(productoActualizado)
 
@@ -46,13 +52,13 @@ const controladoresApi = {
         }
     },
     deleteProducto : async (req, res) => {
-        // TODO todavia no funciona ??
-        const idProducto = req.params.id
+
+        const idProducto = req.params.idProducto
         try {
             await contenedor.deleteById(idProducto)
             res.sendStatus(204)
         } catch (error) {
-            console.log(error.message);
+            res.json({error: error.message});
         }
     }
 

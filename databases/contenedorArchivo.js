@@ -48,7 +48,7 @@ class ContenedorArchivo {
         try {
             let archivo = await fs.readFile(this.path, { encoding: 'utf-8' });
             let archivo_Json = JSON.parse(archivo);
-            let datos = archivo_Json.filter(producto => producto.id !== id);
+            let datos = archivo_Json.filter(producto => producto.id != id);
             await fs.writeFile(this.path, JSON.stringify(datos, null, 4));
             console.log(`Se elimino el producto con id ${id}`);
         } catch (error) {

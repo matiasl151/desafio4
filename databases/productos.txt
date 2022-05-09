@@ -1,17 +1,26 @@
 [
     {
-        "title": "hola",
-        "thumbnail": "...",
-        "id": 1652096453447
+        "title": "Iphone 13",
+        "price": 1200,
+        "thumbnail": "celular.jpg",
+        "id": 1652102837332
     },
     {
-        "title": "adios",
-        "thumbnail": "...",
-        "id": 1652096491245
+        "title": "Macbook M1",
+        "price": 2000,
+        "thumbnail": "notebook.jpg",
+        "id": 1652102863883
     },
     {
-        "title": "boeenas",
-        "thumbnail": "gaspi.png",
-        "id": 1652097166206
+        "title": "TV LG 85",
+        "price": 3500,
+        "thumbnail": "televisor.jpg",
+        "id": 1652102912326
+    },
+    {
+        "title": "Playstation 5",
+        "price": 500,
+        "thumbnail": "ps5.jpg",
+        "id": 1652102962004
     }
 ]
